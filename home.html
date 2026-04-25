@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Alliance for Peace and Solidarity for Africa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a class="logo" href="home.html">
+                    <img src="assets/favicon.png" alt="GAPSAFRICA logo">
+                </a>
+
+                <button class="menu-toggle" aria-label="toggle navigation" aria-expanded="false"
+                    aria-controls="primary-navigation">
+                    ☰
+                </button>
+
+                <ul id="primary-navigation" class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#initiatives">Initiatives</a></li>
+
+                    <!-- 👇 Mobile donate (stays in menu) -->
+                    <li class="mobile-only">
+                        <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link" class="btn btn-primary">Donate</a>
+                    </li>
+                </ul>
+
+                <!-- 👇 Desktop donate (separate) -->
+                <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
+                    class=" donate-desktop" target="_blank" rel="noopener noreferrer" aria-label="Visit gofundme.com on a new tab">Donate</a>
+            </nav>
+
+
+
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Children. Women. Africa.</h1>
+                <img src="/assets/gapsafricaBannerLarge.svg" alt="GAPSAFRICA banner with images" class="hero-image">
+                <p class="community-goal">
+                    If <strong>300 people give $10/month</strong>, the school can run year-round. Learn more about our initiatives and who we are.
+                </p>
+                                <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
+                    target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Visit gofundme.com on a new tab">Donate</a>
+                <p class="transition-line">You'll be directed to our official donation page to complete your gift</p>
+
+               <div class="hero-progress">
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 1%"></div>
+                    </div>
+
+                    <p class="progress-label">1% funded</p>
+
+                </div>
+
+            </div>
+        </section>
+        <section class="impact">
+            <div class="container">
+                <h2>Your Impact</h2>
+                <ul class="impact-list">
+                    <li class="impact-type">
+                        <img class="impact-icon" src="/assets/icons8-school-50.png" alt="School icon">
+                        <span class="impact-stat">4</span>
+                        <span class="impact-label">Classrooms Built</span>
+                    </li>
+
+                    <li class="impact-type">
+                        <img class="impact-icon" src="/assets/icons8-student-48.png" alt="Student icon">
+                        <span class="impact-stat">350+</span>
+                        <span class="impact-label">Students Supported</span>
+                    </li>
+
+                    <li class="impact-type">
+                        <img class="impact-icon" src="/assets/icons8-soccer-48.png" alt="Soccer icon">
+                        <span class="impact-stat">2</span>
+                        <span class="impact-label">Peace Tournaments</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="initiatives" id="initiatives">
+            <div class="container">
+                <h2>Our Initiatives</h2>
+                <p class="initiatives-intro">Focused programs creating lasting impact in education, empowerment, and
+                    community development.
+                </p>
+                <div class="grid grid-3">
+                    <div class="initiative-card">
+                        <img src="/assets/communityBuilding.jpg" alt="Education program">
+                        <h3>Community Education</h3>
+                        <p>Supporting local schools with supplies, teachers, and classrooms.</p>
+                        <span class="impact-stat">350+ Students Supported</span>
+                        <a href="/learn-more-education.html" class="card-btn">Learn More</a>
+                    </div>
+
+                    <div class="initiative-card">
+                        <img src="/assets/empowerHer1.jpg" alt="Women empowerment">
+                        <h3>EmpowerHer Pilot Initiative</h3>
+                        <p>Training widows and single mothers in sustainable skills.</p>
+                        <span class="impact-stat">50 Women Trained</span>
+                        <a href="/learn-more-empowerHer.html" class="card-btn">Learn More</a>
+                    </div>
+
+                    <div class="initiative-card">
+                        <img src="/assets/peaceTour.jpeg" alt="Peace tournament" class="limited-height-image">
+                        <h3>Peace Tournament</h3>
+                        <p>Sports and leadership programs promoting unity and resilience.</p>
+                        <span class="impact-stat">12 Teams Participated</span>
+                        <a href="#" class="card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="about" id="about">
+            <div class="container">
+
+                <h2>About GAPSAFRICA</h2>
+
+                <!-- TABS -->
+                <div class="about-tabs">
+                    <button class="about-btn active" data-tab="mission">Mission</button>
+                    <button class="about-btn" data-tab="who">Who We Are</button>
+                    <button class="about-btn" data-tab="what">What We Do</button>
+                    <button class="about-btn" data-tab="how">How We Do It</button>
+                    <button class="about-btn" data-tab="impact">Impact</button>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="about-panel" id="about-panel">
+
+                    <div class="about-grid">
+
+                        <!-- LEFT IMAGE -->
+                        <div class="about-image">
+                            <img id="about-image" src="/assets/p15.jpg" alt="">
+                        </div>
+
+                        <!-- RIGHT CONTENT -->
+                        <div class="about-content">
+                            <h3 id="about-title">Mission</h3>
+                            <div id="about-text"></div>
+
+                            <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link" class="btn btn-primary " target="_blank" rel="noopener noreferrer" title="You'll be directed to our official donation page to complete your gift" aria-label="Visit gofundme.com in a new tab">Support This Work</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    
+    <p class="footer-copy">
+      © <span id="year"></span> GAPSAfrica. All rights reserved.
+    </p>
+
+    <div class="footer-links">
+      <a href="/meet_the_team.html">Meet the Team</a>
+      <a href="mailto:info@gapsafrica.org">Contact Us</a>
+    </div>
+
+  </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
