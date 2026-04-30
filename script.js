@@ -60,7 +60,7 @@ to serve, protect, and empower children and women across Africa.
     `,
   },  vision: {
     title: "Vision",
-    image: "/assets/p55.jpg",
+    image: "/assets/p105.jpg",
     html: `
       <p>An Africa where:</p>
       <ul>
