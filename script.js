@@ -14,33 +14,36 @@ const aboutTabsData = {
     title: "Who We Are",
     image: "/assets/p33.jpg",
     html: `
-      <p><strong>We are a community-led organization operating from within Nakivale Refugee Camp.</strong></p>
-      <p>Our work is carried out by local leaders who understand the challenges firsthand and are building practical, lasting solutions within their own community.</p>
+    <p>GAPSAFRICA is a network of young leaders, volunteers, and changemakers united by a common vision:
+
+👉 Building a more peaceful, more united, and more self-reliant Africa.</p>
+
+<p>Our commitment is simple yet powerful:
+
+to serve, protect, and empower children and women across Africa.
+</p>
     `,
   },
   what: {
-    title: "What We Do",
+    title: "Our Actions on the Ground",
     image: "/assets/p73.jpg",
     html: `
-      <p>Supporting 300+ children and families through consistent, community-led programs</p>
+      <p>Inspired by our motto, "Serving children and women across Africa", our activities focus on direct and lasting impact:</p>
       <ul>
-        <li><strong>Education Support</strong> – Keeping children in school</li>
-        <li><strong>Women’s Programs</strong> – Training for income</li>
-        <li><strong>Health & Hygiene</strong> – Clean water & sanitation</li>
-        <li><strong>Community Programs</strong> – Safe spaces through sports</li>
+        <li><strong>Education & Child Protection</strong> – Access to education & distribution of school supplies</li>
+        <li><strong>Training and Awareness Programs</strong> – Because every child deserves a safe and promising future</li>
+        <li><strong>Women Empowerment</strong> – Vocational Training & Leadership Programs</li>
       </ul>
     `,
   },
   how: {
-    title: "How We Do It",
+    title: "Through Peace & Social Cohesion",
     image: "/assets/p105.jpg",
     html: `
-      <p><strong>We keep our approach simple, transparent, and community-led.</strong></p>
       <ul>
-        <li><strong>Direct Support</strong> – Funds go straight to programs</li>
-        <li><strong>Local Leadership</strong> – Community-driven decisions</li>
-        <li><strong>Focused Initiatives</strong> – Do a few things well</li>
-        <li><strong>Clear Visibility</strong> – Transparent impact</li>
+        <li><strong>Conflict Resolution</strong> – Training Peacemakers</li>
+        <li><strong>Engagement</strong> – Community-driven decisions with children at the center</li>
+        <li><strong>Collaboration</strong> – Raising awareness of living together</li>
       </ul>
     `,
   },
@@ -48,12 +51,22 @@ const aboutTabsData = {
     title: "Impact",
     image: "/assets/p55.jpg",
     html: `
-      <p><strong>Consistent support is already changing daily life.</strong></p>
+      <p>Through our completed programs:</p>
       <ul>
-        <li><strong>300+ children</strong> supported</li>
-        <li><strong>Daily meals</strong> provided</li>
-        <li><strong>Active classrooms</strong> funded</li>
-        <li><strong>Women trained</strong> in income skills</li>
+        <li>Children have gained <strong>hope</strong> through education</li>
+        <li>Women have gained <strong>autonomy & dignity</strong></li>
+        <li>Communitied have been <strong>strenthened through solidarity</strong></li>
+      </ul>
+    `,
+  },  vision: {
+    title: "Vision",
+    image: "/assets/p55.jpg",
+    html: `
+      <p>An Africa where:</p>
+      <ul>
+        <li>Every child is protected and educated</li>
+        <li>Every women is strong and independent</li>
+        <li>Every community lives in peace and dignity</li>
       </ul>
     `,
   },
