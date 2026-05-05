@@ -55,7 +55,7 @@ to serve, protect, and empower children and women across Africa.
       <ul>
         <li>Children have gained <strong>hope</strong> through education</li>
         <li>Women have gained <strong>autonomy & dignity</strong></li>
-        <li>Communities have been <strong>strenghthened through solidarity</strong></li>
+        <li>Communities have been <strong>strengthened through solidarity</strong></li>
       </ul>
     `,
   },  
