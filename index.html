@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Global Alliance for Peace and Solidarity for Africa</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/icon" href="assets/favicon.png">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
                 </button>
 
                 <ul id="primary-navigation" class="nav-links">
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#about">About GAPSAFRICA</a></li>
                     <li><a href="#initiatives">Initiatives</a></li>
 
                     <!-- 👇 Mobile donate (stays in menu) -->
@@ -45,15 +46,18 @@
     <main>
         <section class="hero">
             <div>
-                                <h1>Global Alliance for Peace and Solidarity in Africa </h1>
+                <h1>Global Alliance for Peace and Solidarity in Africa </h1>
 
                 <h2>Serving Women and Children Across Africa</h2>
 
                 <img src="/assets/gapsafricaBannerLarge.svg" alt="GAPSAFRICA banner with images" class="hero-image">
 
-                <p>GAPSAFRICA is a refugee-led organization committed to transforming African communities through peace, education, solidarity, and concrete actions for sustainable development. </p>
-                <p>We work at the intersection of peacebuilding, education, health, environmental protection, and the empowerment of youth and women. Our approach is simple: to give individuals the knowledge, tools, and opportunities they need to become agents of change within their communities.</p>
-</p>
+                <p>GAPSAFRICA is a refugee-led organization committed to transforming African communities through peace,
+                    education, solidarity, and concrete actions for sustainable development. </p>
+                <p>We work at the intersection of peacebuilding, education, health, environmental protection, and the
+                    empowerment of youth and women. Our approach is simple: to give individuals the knowledge, tools,
+                    and opportunities they need to become agents of change within their communities.</p>
+                </p>
 
                 <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
                     target="_blank" rel="noopener noreferrer" class="btn btn-primary"
@@ -77,19 +81,24 @@
                 <h2>About GAPSAFRICA</h2>
 
                 <!-- TABS -->
-                <div class="about-tabs">
-                    <button class="about-btn active" data-tab="mission">Mission</button>
-                    <button class="about-btn" data-tab="who">Who We Are</button>
-                    <button class="about-btn" data-tab="what">What We Do</button>
-                    <button class="about-btn" data-tab="how">How We Do It</button>
-                    <button class="about-btn" data-tab="impact">Impact</button>
-                    <button class="about-btn" data-tab="vision">Our Vision</button>
+                <div class="about-tabs" role="tablist" aria-label="About GAPSAFRICA Section">
+                    <button class="about-btn active" role="tab" id="tab-mission" aria-selected="true"
+                        aria-controls="panel-mission" data-tab="mission">Mission</button>
+                    <button class="about-btn" role="tab" data-tab="who" id="tab-who" aria-selected="false"
+                        aria-controls="panel-who">Who We Are</button>
+                    <button class="about-btn" data-tab="what" role="tab" id="tab-what" aria-selected="false"
+                        aria-controls="panel-what">What We Do</button>
+                    <button class="about-btn" data-tab="how" role="tab" id="tab-how" aria-selected="false"
+                        aria-controls="panel-how">How We Do It</button>
+                    <button class="about-btn" data-tab="impact" role="tab" id="tab-impact" aria-selected="false"
+                        aria-controls="panel-impact">Impact</button>
+                    <button class="about-btn" data-tab="vision" role="tab" id="tab-vision" aria-selected="false"
+                        aria-controls="panel-vision">Our Vision</button>
 
                 </div>
 
                 <!-- CONTENT -->
-                <div class="about-panel" id="about-panel">
-
+                <div class="about-panel" id="about-panel" role="tabpanel">
                     <div class="about-grid">
 
                         <!-- LEFT IMAGE -->
@@ -105,7 +114,7 @@
                             <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
                                 class="btn btn-primary " target="_blank" rel="noopener noreferrer"
                                 title="You'll be directed to our official donation page to complete your gift"
-                                aria-label="Visit gofundme.com in a new tab">Support This Work</a>
+                                aria-label="Support GAPSAFRICA by visiting our GoFundMe page (opens in a new tab)">Support This Work</a>
                         </div>
 
                     </div>
@@ -170,7 +179,7 @@
                 </div>
             </div>
         </section>
-        
+
     </main>
     <footer class="site-footer">
         <div class="container footer-inner">

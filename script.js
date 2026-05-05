@@ -55,17 +55,18 @@ to serve, protect, and empower children and women across Africa.
       <ul>
         <li>Children have gained <strong>hope</strong> through education</li>
         <li>Women have gained <strong>autonomy & dignity</strong></li>
-        <li>Communitied have been <strong>strenthened through solidarity</strong></li>
+        <li>Communities have been <strong>strenghthened through solidarity</strong></li>
       </ul>
     `,
-  },  vision: {
+  },  
+    vision: {
     title: "Vision",
     image: "/assets/p105.jpg",
     html: `
       <p>An Africa where:</p>
       <ul>
         <li>Every child is protected and educated</li>
-        <li>Every women is strong and independent</li>
+        <li>Every woman is strong and independent</li>
         <li>Every community lives in peace and dignity</li>
       </ul>
     `,
@@ -91,24 +92,56 @@ function initAboutTabs() {
 
   if (!buttons.length || !title || !text || !image) return;
 
-  function applyTab(key) {
-    const content = aboutTabsData[key];
-    if (!content) return;
-    title.textContent = content.title;
-    text.innerHTML = content.html;
-    image.src = content.image;
-  }
+  function applyTab(activeBtn) {
+  const key = activeBtn.dataset.tab;
+  const content = aboutTabsData[key];
+  const panel = document.getElementById("about-panel");
+
+  if (!content) return;
 
   buttons.forEach((btn) => {
+    const isActive = btn === activeBtn;
+
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    btn.setAttribute("tabindex", isActive ? "0" : "-1");
+  });
+
+if (panel) {
+  panel.setAttribute("aria-labelledby", activeBtn.id);
+}
+  title.textContent = content.title;
+  text.innerHTML = content.html;
+  image.src = content.image;
+  image.alt = content.title;
+}
+
+  buttons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      applyTab(btn.dataset.tab);
+      applyTab(btn);
+    });
+
+    btn.addEventListener("keydown", (e) => {
+      let nextIndex;
+
+      if (e.key === "ArrowRight") {
+        nextIndex = (index + 1) % buttons.length;
+      }
+
+      if (e.key === "ArrowLeft") {
+        nextIndex = (index - 1 + buttons.length) % buttons.length;
+      }
+
+      if (nextIndex !== undefined) {
+        e.preventDefault();
+        buttons[nextIndex].focus();
+        applyTab(buttons[nextIndex]);
+      }
     });
   });
 
-  const active = document.querySelector(".about-btn.active");
-  if (active) applyTab(active.dataset.tab);
+  const active = document.querySelector(".about-btn.active") || buttons[0];
+  applyTab(active);
 }
 
 // ===============================

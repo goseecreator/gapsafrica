@@ -149,6 +149,7 @@ li {
 .nav-links a:hover {
     text-decoration: none;
     opacity: 0.6;
+    color:var(--color-primary-hover);
 }
 
 .menu-toggle {
