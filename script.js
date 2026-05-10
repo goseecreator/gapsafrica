@@ -207,3 +207,36 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initGallery();
 });
+
+//===================================STEP CAMPAIGN=============//
+const stepsInput = document.getElementById("stepsInput");
+const donationInput = document.getElementById("donationInput");
+const calculateImpact = document.getElementById("calculateImpact");
+const impactSteps = document.getElementById("impactSteps");
+const impactText = document.getElementById("impactText");
+
+calculateImpact.addEventListener("click", () => {
+  const steps = Number(stepsInput.value) || 0;
+  const donation = Number(donationInput.value) || 0;
+
+  const formattedSteps = steps.toLocaleString();
+
+  impactSteps.textContent = `${formattedSteps} steps`;
+
+  if (steps <= 0 && donation <= 0) {
+    impactText.textContent = "Enter your steps and donation amount to see your impact.";
+    return;
+  }
+
+  if (steps > 0 && donation > 0) {
+    impactText.textContent = `paired with a $${donation} gift can help turn movement into meals, education, and support.`;
+    return;
+  }
+
+  if (steps > 0) {
+    impactText.textContent = "can become real support when you donate, share, or invite a sponsor.";
+    return;
+  }
+
+  impactText.textContent = `your $${donation} gift can help support children with education, meals, and care.`;
+});
