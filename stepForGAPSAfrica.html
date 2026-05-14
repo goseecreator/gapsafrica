@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step for GAPSAfrica</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(230, 178, 0, 0.2), transparent 35%),
+        linear-gradient(135deg, #fffdf5 0%, #f6f0df 100%);
+      color: #063f1f;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .page-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: #0b5a2a;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #e6b200;
+      font-size: clamp(4rem, 14vw, 9rem);
+      letter-spacing: -0.08em;
+    }
+
+    .hero p,
+    .generator-card p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #1c1c1c;
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: 2rem;
+      overflow: hidden;
+      min-height: 520px;
+      box-shadow: 0 24px 60px rgba(6, 63, 31, 0.2);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #063f1f;
+      color: white;
+      border: 4px solid #e6b200;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+      line-height: 1.2;
+      padding: 1rem;
+    }
+
+    .generator-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 20px 50px rgba(6, 63, 31, 0.12);
+    }
+
+    .generator-card h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .generator-intro {
+      margin-bottom: 1rem;
+    }
+
+    .share-help {
+      background: #f6f0df;
+      border-left: 6px solid #e6b200;
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .share-help p {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .share-help ol {
+      padding-left: 1.25rem;
+      color: #1c1c1c;
+      line-height: 1.7;
+    }
+
+    .generator-ui {
+      display: grid;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 900;
+      color: #063f1f;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      min-height: 56px;
+      border-radius: 1rem;
+      border: 2px solid rgba(6, 63, 31, 0.15);
+      padding: 0 1rem;
+      font: inherit;
+      background: #fffdf7;
+    }
+
+    .donated-check {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 800;
+    }
+
+    .step-btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      min-height: 56px;
+      padding: 0 1.5rem;
+      font-weight: 900;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    .step-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .step-btn-primary {
+      background: #e6b200;
+      color: #063f1f;
+    }
+
+    .step-btn-secondary {
+      background: #063f1f;
+      color: white;
+    }
+
+    .step-btn-donate {
+      background: #0b5a2a;
+      color: white;
+    }
+
+    .post-error {
+      color: #9b1c1c;
+      font-weight: 800;
+    }
+
+    .post-preview {
+      margin-top: 2rem;
+      background: #f6f0df;
+      border-radius: 1.5rem;
+      padding: 1rem;
+    }
+
+    .post-preview h3 {
+      margin-bottom: 1rem;
+    }
+
+    #generatedImagePreview {
+      width: 100%;
+      border-radius: 1rem;
+      display: block;
+      border: 2px solid rgba(6, 63, 31, 0.15);
+    }
+
+    .generated-caption {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .caption-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .caption-header span {
+      font-weight: 900;
+      color: #063f1f;
+    }
+
+    .caption-card {
+      background: white;
+      border-radius: 1rem;
+      border: 2px solid rgba(6, 63, 31, 0.08);
+      padding: 1rem;
+      line-height: 1.6;
+      color: #1c1c1c;
+      white-space: pre-wrap;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .copy-caption-btn {
+      border: 0;
+      background: transparent;
+      color: #0b5a2a;
+      font-weight: 900;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .copy-caption-btn:hover {
+      opacity: 0.7;
+    }
+
+    .share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 850px) {
+      body {
+        padding: 1rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image,
+      .hero-image img {
+        min-height: 360px;
+      }
+
+      .hero-badge {
+        width: 120px;
+        height: 120px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <p class="kicker">Global Alliance for Peace & Solidarity for Africa</p>
+
+        <h1>
+          <span>Step</span>
+          for GAPSAfrica
+        </h1>
+
+        <p>
+          Enter your daily steps and generate a branded social post to share your support for children in Nakivale Refugee Camp.
+        </p>
+      </div>
+
+      <div class="hero-image">
+        <img src="assets/p36.jpg" alt="Children supported by GAPSAfrica" />
+
+      </div>
+    </section>
+
+    <section class="generator-card">
+      <p class="kicker">Social Post Generator</p>
+
+      <h2>Generate Your Share Image</h2>
+
+      <p class="generator-intro">
+        Enter your step count and create a branded social post to share your support for GAPSAfrica.
+      </p>
+
+      <div class="share-help">
+        <p><strong>Best sharing experience:</strong></p>
+
+        <ol>
+          <li>Generate your image</li>
+          <li>Download the post</li>
+          <li>Copy the caption</li>
+          <li>Share it on Instagram, Facebook, or Stories</li>
+        </ol>
+      </div>
+
+      <div class="generator-ui">
+        <label for="shareStepsInput">Today’s Steps</label>
+
+        <input
+          id="shareStepsInput"
+          type="number"
+          min="1"
+          placeholder="Example: 10000"
+        />
+
+        <label class="donated-check" for="shareDonatedCheckbox">
+          <input type="checkbox" id="shareDonatedCheckbox" />
+          I donated after walking
+        </label>
+
+        <button id="generatePostBtn" class="step-btn step-btn-primary">
+          Generate My Post
+        </button>
+
+        <p id="postError" class="post-error"></p>
+
+        <canvas id="socialCanvas" width="1080" height="1080" hidden></canvas>
+
+        <div class="post-preview" id="postPreview" hidden>
+          <h3>Your Share Image</h3>
+
+          <img
+            id="generatedImagePreview"
+            alt="Generated Step for GAPSAfrica social media post"
+          />
+
+          <div class="generated-caption">
+            <div class="caption-header">
+              <span>Caption</span>
+
+              <button id="copyCaptionBtn" class="copy-caption-btn">
+                Copy Caption
+              </button>
+            </div>
+
+            <div id="generatedCaption" class="caption-card"></div>
+          </div>
+
+          <div class="share-actions">
+            <button id="downloadImageBtn" class="step-btn step-btn-secondary">
+              Download Image
+            </button>
+
+            <button id="shareImageBtn" class="step-btn step-btn-donate">
+              Share Image
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const shareStepsInput = document.getElementById("shareStepsInput");
+    const shareDonatedCheckbox = document.getElementById("shareDonatedCheckbox");
+    const generatePostBtn = document.getElementById("generatePostBtn");
+    const postPreview = document.getElementById("postPreview");
+    const postError = document.getElementById("postError");
+
+    const canvas = document.getElementById("socialCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const imagePreview = document.getElementById("generatedImagePreview");
+    const downloadImageBtn = document.getElementById("downloadImageBtn");
+    const shareImageBtn = document.getElementById("shareImageBtn");
+
+    const generatedCaption = document.getElementById("generatedCaption");
+    const copyCaptionBtn = document.getElementById("copyCaptionBtn");
+
+    const campaignUrl = "gapsafrica.org";
+
+    const campaignImageSrc = "assets/p92.jpg";
+    const campaignImage = new Image();
+    campaignImage.src = campaignImageSrc;
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(" ");
+      let line = "";
+
+      words.forEach((word) => {
+        const testLine = line + word + " ";
+
+        if (ctx.measureText(testLine).width > maxWidth && line !== "") {
+          ctx.fillText(line, x, y);
+          line = word + " ";
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      });
+
+      ctx.fillText(line, x, y);
+    }
+
+    function drawImageCover(ctx, img, x, y, width, height) {
+      const imageRatio = img.width / img.height;
+      const boxRatio = width / height;
+
+      let drawWidth;
+      let drawHeight;
+      let offsetX;
+      let offsetY;
+
+      if (imageRatio > boxRatio) {
+        drawHeight = height;
+        drawWidth = height * imageRatio;
+        offsetX = x - (drawWidth - width) / 2;
+        offsetY = y;
+      } else {
+        drawWidth = width;
+        drawHeight = width / imageRatio;
+        offsetX = x;
+        offsetY = y - (drawHeight - height) / 2;
+      }
+
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    }
+
+    function createCaption(steps, donated) {
+      const formattedSteps = steps.toLocaleString();
+
+      if (donated) {
+        return `I just walked ${formattedSteps} steps for GAPSAfrica 💛
+
+I donated to help support education, meals, and care for children in Nakivale Refugee Camp.
+
+Join me: walk, share, or give.
+
+#StepForGAPSAfrica`;
+      }
+
+      return `I just walked ${formattedSteps} steps for GAPSAfrica 💛
+
+Every step helps raise awareness for children in Nakivale Refugee Camp.
+
+Join me: walk, share, or give.
+
+#StepForGAPSAfrica`;
+    }
+
+    function drawSocialImage(steps, donated) {
+      const formattedSteps = steps.toLocaleString();
+
+      const render = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#f6f0df";
+        ctx.fillRect(0, 0, 1080, 1080);
+
+        ctx.save();
+        roundRect(ctx, 60, 60, 960, 430, 40);
+        ctx.clip();
+        drawImageCover(ctx, campaignImage, 60, 60, 960, 430);
+        ctx.restore();
+
+        ctx.fillStyle = "rgba(6, 63, 31, 0.55)";
+        roundRect(ctx, 60, 60, 960, 430, 40);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(875, 150, 110, 0, Math.PI * 2);
+        ctx.fillStyle = "#e6b200";
+        ctx.fill();
+
+        ctx.fillStyle = "#063f1f";
+        ctx.font = "900 28px system-ui, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("WALK", 875, 135);
+        ctx.fillText("SHARE", 875, 170);
+        ctx.fillText("GIVE", 875, 205);
+        ctx.textAlign = "left";
+
+        ctx.fillStyle = "#e6b200";
+        ctx.font = "900 34px system-ui, sans-serif";
+        ctx.fillText("STEP FOR GAPSAFRICA", 95, 135);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "900 88px system-ui, sans-serif";
+        ctx.fillText("I WALKED", 95, 250);
+
+        ctx.fillStyle = "#ffffff";
+        roundRect(ctx, 60, 535, 960, 270, 36);
+        ctx.fill();
+
+        ctx.fillStyle = "#063f1f";
+        ctx.font = "900 122px system-ui, sans-serif";
+        ctx.fillText(formattedSteps, 95, 680);
+
+        ctx.font = "900 54px system-ui, sans-serif";
+        ctx.fillText("STEPS", 100, 750);
+
+        if (donated) {
+          ctx.fillStyle = "#e6b200";
+          roundRect(ctx, 620, 625, 315, 78, 39);
+          ctx.fill();
+
+          ctx.fillStyle = "#063f1f";
+          ctx.font = "900 34px system-ui, sans-serif";
+          ctx.fillText("I DONATED", 675, 675);
+        }
+
+        const message = donated
+          ? "to help support education, meals, and care for children in Nakivale Refugee Camp."
+          : "to raise awareness for children in Nakivale Refugee Camp.";
+
+        ctx.fillStyle = "#1c1c1c";
+        ctx.font = "600 36px system-ui, sans-serif";
+        wrapText(ctx, message, 70, 865, 930, 48);
+
+        ctx.fillStyle = "#063f1f";
+        ctx.font = "900 38px system-ui, sans-serif";
+        ctx.fillText("Walk. Share. Give.", 70, 1010);
+
+        ctx.fillStyle = "#0b5a2a";
+        ctx.font = "700 28px system-ui, sans-serif";
+        ctx.fillText(campaignUrl, 70, 1050);
+
+        ctx.fillStyle = "#e6b200";
+        ctx.font = "900 30px system-ui, sans-serif";
+        ctx.fillText("#StepForGAPSAfrica", 690, 1010);
+
+        imagePreview.src = canvas.toDataURL("image/png");
+      };
+
+      if (campaignImage.complete) {
+        render();
+      } else {
+        campaignImage.onload = render;
+      }
+    }
+
+    generatePostBtn.addEventListener("click", () => {
+      const rawSteps = shareStepsInput.value.trim();
+      const steps = Number(rawSteps);
+      const donated = shareDonatedCheckbox.checked;
+
+      postError.textContent = "";
+      postPreview.hidden = true;
+
+      if (rawSteps === "") {
+        postError.textContent = "Enter your step count first.";
+        return;
+      }
+
+      if (steps <= 0 || Number.isNaN(steps)) {
+        postError.textContent = "Please enter a step count greater than 0.";
+        return;
+      }
+
+      generatedCaption.textContent = createCaption(steps, donated);
+      drawSocialImage(steps, donated);
+      postPreview.hidden = false;
+    });
+
+    copyCaptionBtn.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(generatedCaption.textContent);
+
+      copyCaptionBtn.textContent = "Copied!";
+
+      setTimeout(() => {
+        copyCaptionBtn.textContent = "Copy Caption";
+      }, 1800);
+    });
+
+    downloadImageBtn.addEventListener("click", () => {
+      const link = document.createElement("a");
+      link.download = "step-for-gapsafrica.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+
+    shareImageBtn.addEventListener("click", async () => {
+      canvas.toBlob(async (blob) => {
+        const file = new File([blob], "step-for-gapsafrica.png", {
+          type: "image/png"
+        });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: "Step for GAPSAfrica",
+            text: generatedCaption.textContent,
+            files: [file]
+          });
+        } else {
+          downloadImageBtn.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
