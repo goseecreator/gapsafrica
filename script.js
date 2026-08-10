@@ -149,7 +149,7 @@ if (panel) {
 // ===============================
 function initMobileNav() {
   const menu = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".nav-links");
+  const nav = document.querySelector(".mobile-nav-menu");
 
   if (!menu || !nav) return;
 
