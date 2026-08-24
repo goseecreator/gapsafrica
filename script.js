@@ -240,3 +240,9 @@ calculateImpact.addEventListener("click", () => {
 
   impactText.textContent = `your $${donation} gift can help support children with education, meals, and care.`;
 });
+
+// Keep the media-section links inactive until the verified GAPSAFRICA
+// Facebook page URL is added in index.html.
+document.querySelectorAll('[data-facebook-page-link][aria-disabled="true"]').forEach((link) => {
+    link.addEventListener("click", (event) => event.preventDefault());
+});
