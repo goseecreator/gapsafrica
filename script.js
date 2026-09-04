@@ -149,7 +149,7 @@ if (panel) {
 // ===============================
 function initMobileNav() {
   const menu = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".mobile-nav-menu");
+  const nav = document.querySelector(".nav-links");
 
   if (!menu || !nav) return;
 
@@ -166,6 +166,130 @@ function initMobileNav() {
       menu.setAttribute("aria-expanded", "false");
     });
   });
+}
+
+// ===============================
+// CREDIBILITY COUNTERS
+// ===============================
+function initCredibilityCounters() {
+  const strip = document.querySelector(".credibility-strip");
+  const counters = strip?.querySelectorAll("[data-count]");
+
+  if (!strip || !counters?.length) return;
+
+  const showFinalValues = () => {
+    counters.forEach((counter) => {
+      counter.textContent = `${counter.dataset.count}${counter.dataset.suffix || ""}`;
+    });
+  };
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    showFinalValues();
+    return;
+  }
+
+  counters.forEach((counter) => {
+    counter.textContent = `0${counter.dataset.suffix || ""}`;
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+
+    observer.disconnect();
+    const startTime = performance.now();
+    const duration = 2200;
+
+    const update = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = progress < 0.5
+        ? progress * 1.4
+        : 0.7 + 0.3 * (1 - Math.pow(1 - (progress - 0.5) / 0.5, 2));
+
+      counters.forEach((counter) => {
+        const target = Number(counter.dataset.count);
+        const suffix = counter.dataset.suffix || "";
+        counter.textContent = `${Math.round(target * easedProgress)}${suffix}`;
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        showFinalValues();
+      }
+    };
+
+    requestAnimationFrame(update);
+  }, { threshold: 0.2 });
+
+  observer.observe(strip);
+}
+
+// ===============================
+// FACEBOOK POSTS
+// ===============================
+function formatFacebookCaption(caption, maximumLength) {
+  const preview = caption
+    .replace(/https?:\/\/\S+/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (preview.length <= maximumLength) return preview;
+
+  const candidate = preview.slice(0, maximumLength - 1).trimEnd();
+  const lastWordBreak = candidate.lastIndexOf(" ");
+  const shortened = lastWordBreak > maximumLength * 0.6
+    ? candidate.slice(0, lastWordBreak)
+    : candidate;
+
+  return `${shortened.trimEnd()}…`;
+}
+
+async function initFacebookPosts() {
+  const feed = document.querySelector("[data-facebook-feed]");
+  const cards = feed?.querySelectorAll("[data-facebook-post]");
+
+  if (!feed || !cards?.length) return;
+
+  feed.setAttribute("aria-busy", "true");
+
+  try {
+    const response = await fetch("/api/facebook-posts", {
+      headers: { Accept: "application/json" },
+    });
+
+    if (!response.ok) return;
+
+    const apiResponse = await response.json();
+    if (!Array.isArray(apiResponse)) return;
+
+    cards.forEach((card, index) => {
+      const post = apiResponse[index];
+
+      if (!post) return;
+
+      const link = card.querySelector("[data-facebook-post-link]");
+      const image = card.querySelector("[data-facebook-post-image]");
+      const meta = card.querySelector("[data-facebook-post-meta]");
+      const caption = card.querySelector("[data-facebook-post-caption]");
+
+      if (!link || !image || !meta || !caption) return;
+      if (!post.permalink || !post.mediaUrl || typeof post.caption !== "string") return;
+
+      link.href = post.permalink;
+      link.setAttribute(
+        "aria-label",
+        `View GAPSAFRICA Facebook update ${index + 1} (opens in a new tab)`,
+      );
+      image.src = post.mediaUrl;
+      image.alt = `Media from GAPSAFRICA Facebook update ${index + 1}`;
+      meta.textContent = index === 0 ? "Latest field update" : "From the Ground";
+      caption.textContent = formatFacebookCaption(post.caption, index === 0 ? 150 : 105);
+    });
+  } catch {
+    // The static card content remains visible when the feed is unavailable.
+  } finally {
+    feed.removeAttribute("aria-busy");
+  }
 }
 
 // ===============================
@@ -205,6 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initFooterYear();
   initAboutTabs();
   initMobileNav();
+  initCredibilityCounters();
+  initFacebookPosts();
   initGallery();
 });
 
