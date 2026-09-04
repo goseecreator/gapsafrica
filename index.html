@@ -15,12 +15,13 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body>
+<body class="home-page">
     <header class="site-header">
         <div class="container">
             <nav class="navbar">
-                <a class="logo" href="index.html">
+                <a class="logo" href="index.html" aria-label="GAPSAFRICA home">
                     <img src="assets/favicon.png" alt="GAPSAFRICA logo">
+                    <span class="logo-wordmark">Global Alliance for Peace and Solidarity for Africa</span>
                 </a>
 
                 <button class="menu-toggle" aria-label="toggle navigation" aria-expanded="false"
@@ -29,25 +30,16 @@
                 </button>
 
                 <ul id="primary-navigation" class="nav-links">
-                    <li><a href="#about">About GAPSAFRICA</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#initiatives">Initiatives</a></li>
-                </ul>
-
-                <ul id="mobile-navigation" class="mobile-nav-menu" aria-label="Mobile navigation">
-                    <li><a href="#about">About GAPSAFRICA</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="/meet_the_team.html">Meet the Team</a></li>
-                    <li><a href="mailto:info@gapsafrica.org">Contact Us</a></li>
-                    <li>
+                    <li class="mobile-donate-item">
                         <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
-                            class="btn btn-primary">Donate</a>
+                            class="btn btn-primary" target="_blank" rel="noopener noreferrer">Donate</a>
                     </li>
                 </ul>
 
-                <!-- 👇 Desktop donate (separate) -->
                 <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
-                    class=" donate-desktop" target="_blank" rel="noopener noreferrer"
-                    aria-label="Visit gofundme.com on a new tab">Donate</a>
+                    class="donate-desktop" target="_blank" rel="noopener noreferrer">Donate</a>
             </nav>
 
 
@@ -56,85 +48,86 @@
     </header>
     <main>
         <section class="hero">
-            <div>
-                <h1>Global Alliance for Peace and Solidarity in Africa </h1>
+            <div class="container hero-layout">
+                <div class="hero-copy">
+                    <p class="hero-eyebrow">WOMEN & CHILDREN-LED <span aria-hidden="true">•</span> COMMUNITY-BUILT</p>
+                    <h1 class="hero-title">Serving Women and Children Across Africa</h1>
+                    <p class="hero-description">GAPSAFRICA is a refugee-led organization transforming African communities through peace, education, and solidarity. We partner with local leaders to create lasting change by equipping refugees with the knowledge, tools and opportunities to become agents of change within their communities.</p>
+                    <div class="hero-actions">
+                        <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-primary">Support the Work</a>
+                        <a class="hero-secondary-link" href="#initiatives">Explore Our Initiatives <span aria-hidden="true">→</span></a>
+                    </div>
+                    <p class="hero-trust-line">Women and Children-led. Community-built. For the present.</p>
+                </div>
+                <figure class="hero-media">
+                    <img class="hero-photo" src="/assets/p15.jpg"
+                        alt="GAPSAFRICA community members meeting together">
+                    <figcaption class="hero-caption">GAPSAFRICA community meeting</figcaption>
+                </figure>
+            </div>
+        </section>
 
-                <h2>Serving Women and Children Across Africa</h2>
+        <section class="credibility-strip" id="impact" aria-label="GAPSAFRICA impact at a glance">
+            <div class="container credibility-inner">
+                <ul class="credibility-stats">
+                    <li><strong data-count="350" data-suffix="+" aria-label="350+">350+</strong> <span>Students Supported</span></li>
+                    <li><strong data-count="50" data-suffix="+" aria-label="50+">50+</strong> <span>Women Trained</span></li>
+                    <li><strong data-count="4" data-suffix="" aria-label="4">4</strong> <span>Classrooms Built</span></li>
+                </ul>
+                <a class="credibility-link" href="#impact">See our impact <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
 
-                <img src="/assets/gapsafricaBannerLarge.svg" alt="GAPSAFRICA banner with images" class="hero-image">
-
-                <div class="from-ground" aria-labelledby="from-ground-title">
+        <section class="from-ground" id="from-the-ground" aria-labelledby="from-ground-title">
+            <div class="container">
                     <div class="from-ground-header">
                         <div>
                             <h2 id="from-ground-title">From the Ground</h2>
                             <p>Recent stories from GAPSAFRICA communities.</p>
                         </div>
-                        <!-- Replace # with the verified GAPSAFRICA Facebook page URL. -->
-                        <a class="from-ground-all" href="#" data-facebook-page-link aria-disabled="true">
+                        <a class="from-ground-all" href="https://www.facebook.com/officialgapsafrica/" data-facebook-page-link target="_blank" rel="noopener noreferrer" aria-label="See all GAPSAFRICA updates on Facebook (opens in a new tab)">
                             See all updates on Facebook <span aria-hidden="true">→</span>
                         </a>
                     </div>
 
-                    <div class="from-ground-grid">
-                        <article class="field-story field-story-featured">
-                            <a class="field-story-link" href="#" data-facebook-page-link aria-disabled="true">
-                                <img src="/assets/empowerHer2.jpg"
+                    <div class="from-ground-grid" data-facebook-feed>
+                        <article class="field-story field-story-featured" data-facebook-post>
+                            <a class="field-story-link" href="https://www.facebook.com/officialgapsafrica/" data-facebook-page-link data-facebook-post-link target="_blank" rel="noopener noreferrer" aria-label="View GAPSAFRICA's latest Step Up for Peace update on Facebook (opens in a new tab)">
+                                <img src="/assets/empowerHer2.jpg" data-facebook-post-image
                                     alt="GAPSAFRICA community members participating in a skills program">
                                 <div class="field-story-body">
-                                    <p class="field-story-meta">Latest field update</p>
-                                    <h3>Community members gather for the latest Step Up for Peace activity.</h3>
+                                    <p class="field-story-meta" data-facebook-post-meta>Latest field update</p>
+                                    <h3 data-facebook-post-caption>Community members gather for the latest Step Up for Peace activity.</h3>
                                     <span class="field-story-arrow" aria-hidden="true">→</span>
                                 </div>
                             </a>
                         </article>
 
-                        <article class="field-story">
-                            <a class="field-story-link" href="#" data-facebook-page-link aria-disabled="true">
-                                <img src="/assets/firstMeeting.jpeg"
+                        <article class="field-story" data-facebook-post>
+                            <a class="field-story-link" href="https://www.facebook.com/officialgapsafrica/" data-facebook-page-link data-facebook-post-link target="_blank" rel="noopener noreferrer" aria-label="View GAPSAFRICA's community leadership update on Facebook (opens in a new tab)">
+                                <img src="/assets/firstMeeting.jpeg" data-facebook-post-image
                                     alt="GAPSAFRICA community members meeting together">
                                 <div class="field-story-body">
-                                    <p class="field-story-meta">Community</p>
-                                    <h3>Local leadership and community connection in action.</h3>
+                                    <p class="field-story-meta" data-facebook-post-meta>Community</p>
+                                    <h3 data-facebook-post-caption>Local leadership and community connection in action.</h3>
                                     <span class="field-story-arrow" aria-hidden="true">→</span>
                                 </div>
                             </a>
                         </article>
 
-                        <article class="field-story">
-                            <a class="field-story-link" href="#" data-facebook-page-link aria-disabled="true">
-                                <img src="/assets/class.png"
+                        <article class="field-story" data-facebook-post>
+                            <a class="field-story-link" href="https://www.facebook.com/officialgapsafrica/" data-facebook-page-link data-facebook-post-link target="_blank" rel="noopener noreferrer" aria-label="View GAPSAFRICA's education update on Facebook (opens in a new tab)">
+                                <img src="/assets/class.png" data-facebook-post-image
                                     alt="Students participating in a GAPSAFRICA education program">
                                 <div class="field-story-body">
-                                    <p class="field-story-meta">Education</p>
-                                    <h3>Young people learn and grow in a supportive space.</h3>
+                                    <p class="field-story-meta" data-facebook-post-meta>Education</p>
+                                    <h3 data-facebook-post-caption>Young people learn and grow in a supportive space.</h3>
                                     <span class="field-story-arrow" aria-hidden="true">→</span>
                                 </div>
                             </a>
                         </article>
                     </div>
-                </div>
-
-                <p>GAPSAFRICA is a refugee-led organization committed to transforming African communities through peace,
-                    education, solidarity, and concrete actions for sustainable development. </p>
-                <p>We work at the intersection of peacebuilding, education, health, environmental protection, and the
-                    empowerment of youth and women. Our approach is simple: to give individuals the knowledge, tools,
-                    and opportunities they need to become agents of change within their communities.</p>
-                </p>
-
-                <a href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
-                    target="_blank" rel="noopener noreferrer" class="btn btn-primary"
-                    aria-label="Visit gofundme.com on a new tab">Donate</a>
-                <p class="transition-line">You'll be directed to our official donation page to complete your gift</p>
-                <!--<div class="hero-progress">
-
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 1%"></div>
-                    </div>
-
-                    <p class="progress-label">1% funded</p>
-
-                </div> -->
-
             </div>
         </section>
         <section class="about" id="about">
@@ -184,31 +177,6 @@
                 </div>
             </div>
         </section>
-        <section class="impact">
-            <div class="container">
-                <h2>Your Impact</h2>
-                <ul class="impact-list">
-                    <li class="impact-type">
-                        <img class="impact-icon" src="/assets/icons8-school-50.png" alt="School icon">
-                        <span class="impact-stat">4</span>
-                        <span class="impact-label">Classrooms Built</span>
-                    </li>
-
-                    <li class="impact-type">
-                        <img class="impact-icon" src="/assets/icons8-student-48.png" alt="Student icon">
-                        <span class="impact-stat">350+</span>
-                        <span class="impact-label">Students Supported</span>
-                    </li>
-
-                    <li class="impact-type">
-                        <img class="impact-icon" src="/assets/icons8-soccer-48.png" alt="Soccer icon">
-                        <span class="impact-stat">4</span>
-                        <span class="impact-label">Peace Tournaments</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
         <section class="initiatives" id="initiatives">
             <div class="container">
                 <h2>Our Initiatives</h2>
@@ -243,22 +211,53 @@
             </div>
         </section>
 
+        <section class="closing-cta" aria-labelledby="closing-cta-title">
+            <div class="container closing-cta-inner">
+                <h2 id="closing-cta-title">Stand with communities building their own future.</h2>
+                <div class="closing-cta-actions">
+                    <a class="closing-cta-donate" href="https://www.gofundme.com/f/big-up-community-children-and-youth-peace-academy-nakivale?attribution_id=sl:c94a0da3-baa2-47ba-aafb-d328f73e4c19&lang=en_US&ts=1775662893&utm_campaign=man_sharesheet_dash&utm_content=amp17_tc&utm_medium=customer&utm_source=copy_link"
+                        target="_blank" rel="noopener noreferrer">Donate</a>
+                    <a class="closing-cta-contact" href="mailto:contactgapsa@gmail.com">Contact GAPSAFRICA</a>
+                </div>
+            </div>
+        </section>
+
     </main>
     <footer class="site-footer">
-        <div class="container footer-inner">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-organization">
+                    <a class="footer-brand" href="index.html" aria-label="GAPSAFRICA home">
+                        <img src="assets/favicon.png" alt="GAPSAFRICA logo">
+                        <span>GAPSAFRICA</span>
+                    </a>
+                    <p>A refugee-led organization advancing peace, education, and livelihoods across African communities.</p>
+                </div>
 
-            <div class="footer-links">
-                <a href="/meet_the_team.html">Meet the Team</a>
-                <a href="mailto:info@gapsafrica.org">Contact Us</a>
+                <nav class="footer-column" aria-labelledby="footer-navigate-title">
+                    <h2 id="footer-navigate-title">Navigate</h2>
+                    <ul>
+
+                        <li><a href="/meet_the_team.html">Meet the Team</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-column">
+                    <h2>Connect</h2>
+                    <a href="mailto:contactgapsa@gmail.com">contactgapsa@gmail.com</a>
+                </div>
+
+                <div class="footer-column">
+                    <h2>Stay informed</h2>
+                    <p>Follow our work and stories from the communities.</p>
+                    <a class="footer-pending" href="https://www.facebook.com/officialgapsafrica/" target="_blank" rel="noopener noreferrer" aria-label="Visit GAPSAFRICA on Facebook (opens in a new tab)">Visit us on Facebook</a>
+                </div>
             </div>
 
-            <div class="footer-meta">
-                <p class="footer-credit">Created by <a href="https://goseecreator.com" target="_blank" rel="noopener noreferrer">Go See Creator</a></p>
-                <p class="footer-copy footer-copyright">
-                    © <span id="year"></span> GAPSAfrica. All rights reserved.
-                </p>
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> GAPSAFRICA. All rights reserved.</p>
+                <p>Site by <a href="https://goseecreator.com" target="_blank" rel="noopener noreferrer">Go See Creator</a></p>
             </div>
-
         </div>
     </footer>
 
