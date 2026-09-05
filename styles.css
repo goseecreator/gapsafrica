@@ -860,10 +860,12 @@ html {
   .about-content {
     font-size: 1.3rem;
   }
-    .about-tabs {
-    justify-content: flex-start; /* 👈 left align feels better on mobile */
-    overflow-x: auto;            /* 👈 allow scroll instead of wrapping */
-    padding-bottom: 4px;
+  .about-tabs {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+    padding: 0 8px 4px;
   }
 
   .about-tabs::-webkit-scrollbar {

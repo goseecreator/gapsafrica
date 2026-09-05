@@ -4,7 +4,7 @@
 const aboutTabsData = {
   mission: {
     title: "Mission",
-    image: "/assets/p15.jpg",
+    image: "/assets/p92.jpg",
     html: `
       <p><strong>We work to create stable, community-led systems that support education, well-being, and opportunity for children and women in Nakivale Refugee Camp.</strong></p>
       <p>Through local leadership and practical initiatives, we focus on building structures that last—so families are supported not just today, but over time.</p>
