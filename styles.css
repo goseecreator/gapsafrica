@@ -1769,3 +1769,96 @@ html {
         height: 190px;
     }
 }
+
+@media (max-width: 768px) {
+    .hero-copy,
+    .hero-caption {
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-inline: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .credibility-inner,
+    .credibility-stats,
+    .credibility-stats li {
+        align-items: center;
+        text-align: center;
+    }
+
+    .credibility-stats {
+        width: 100%;
+    }
+
+    .credibility-stats li {
+        justify-content: center;
+    }
+
+    .credibility-link {
+        align-self: center;
+    }
+
+    .from-ground-header {
+        align-items: center;
+        text-align: center;
+    }
+
+    .from-ground-header > div {
+        width: 100%;
+    }
+
+    .from-ground-header h2 {
+        text-align: center;
+    }
+
+    .from-ground-all {
+        margin-inline: auto;
+    }
+
+    .closing-cta-inner {
+        align-items: center;
+        text-align: center;
+    }
+
+    .closing-cta h2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .closing-cta-actions {
+        justify-content: center;
+    }
+
+    .site-footer {
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .footer-organization p,
+    .footer-column p {
+        margin-inline: auto;
+    }
+
+    .footer-column h2 {
+        text-align: center;
+    }
+
+    .footer-column ul {
+        justify-items: center;
+    }
+
+    .footer-bottom {
+        align-items: center;
+        flex-direction: column;
+        gap: var(--space-xs);
+        text-align: center;
+    }
+}
