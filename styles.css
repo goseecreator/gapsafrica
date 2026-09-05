@@ -201,19 +201,29 @@ li {
 @media (max-width: 900px) {
     .navbar {
         padding: 0.5rem 0;
+        gap: var(--space-xs);
     }
 
     .logo {
         display: flex;
         align-items: center;
+        /* Let the full organization name wrap within the mobile header. */
+        flex: 0 1 auto;
+        min-width: 0;
     }
 
     .logo img {
         height: 44px;
+        flex-shrink: 0;
+    }
+
+    .logo-wordmark {
+        min-width: 0;
     }
 
     .menu-toggle {
         display: inline-flex;
+        flex-shrink: 0;
         align-items: center;
         justify-content: center;
         font-size: 1.35rem;

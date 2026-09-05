@@ -9,6 +9,37 @@ const FACEBOOK_POST_FIELDS = [
 ].join(",");
 const FROM_THE_GROUND_HASHTAG = /#FromTheGround(?![\p{L}\p{N}_])/iu;
 const FROM_THE_GROUND_HASHTAG_GLOBAL = /#FromTheGround(?![\p{L}\p{N}_])/giu;
+const NETWORK_ERROR_CODES = new Set([
+  "ENOTFOUND", "EAI_AGAIN", "ECONNRESET", "ECONNREFUSED", "ETIMEDOUT",
+  "UND_ERR_CONNECT_TIMEOUT", "UND_ERR_HEADERS_TIMEOUT", "UND_ERR_BODY_TIMEOUT",
+  "UND_ERR_SOCKET", "CERT_HAS_EXPIRED", "DEPTH_ZERO_SELF_SIGNED_CERT",
+  "UNABLE_TO_VERIFY_LEAF_SIGNATURE", "ERR_TLS_CERT_ALTNAME_INVALID",
+]);
+
+function safeFacebookMessage(message) {
+  if (typeof message !== "string") return null;
+
+  // Upstream messages are untrusted and can echo request parameters.
+  let safe = message;
+  const values = Object.entries(process.env)
+    .filter(([name, value]) => name.startsWith("FACEBOOK_") && value)
+    .flatMap(([, value]) => [value, encodeURIComponent(value), new URLSearchParams({ v: value }).toString().slice(2)])
+    .sort((a, b) => b.length - a.length);
+  for (const value of values) safe = safe.split(value).join("[REDACTED]");
+
+  return safe
+    .replace(/https?:\/\/[^\s<>"']+/gi, "[URL REDACTED]")
+    .replace(/\b(?:access_token|appsecret_proof|client_secret|authorization)\s*[=:]\s*[^\s,;]+/gi, "[CREDENTIAL REDACTED]")
+    .replace(/\bBearer\s+\S+/gi, "Bearer [REDACTED]")
+    .replace(/\bEAA[A-Za-z0-9]+\b/g, "[TOKEN REDACTED]")
+    .replace(/[\u0000-\u001f\u007f]/g, " ")
+    .slice(0, 1000);
+}
+
+function logFacebookFailure(event, details) {
+  // Only explicitly selected, sanitized fields; never log URL, payload, or Error objects.
+  console.error(JSON.stringify({ source: "facebook-posts", event, ...details }));
+}
 
 function sendJson(response, status, body, cacheControl = "no-store") {
   response.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -103,16 +134,43 @@ module.exports = async function facebookPosts(request, response) {
   graphUrl.searchParams.set("fields", FACEBOOK_POST_FIELDS);
   graphUrl.searchParams.set("limit", "25");
 
+  let graphResponse;
   try {
-    const graphResponse = await fetch(graphUrl, {
+    graphResponse = await fetch(graphUrl, {
       headers: { Accept: "application/json" },
     });
+  } catch (error) {
+    const code = error?.cause?.code || error?.code;
+    logFacebookFailure("network_error", {
+      code: NETWORK_ERROR_CODES.has(code) ? code : "UNKNOWN",
+      aborted: error?.name === "AbortError" || error?.name === "TimeoutError",
+    });
+    return sendJson(response, 502, { error: "Facebook posts are temporarily unavailable." });
+  }
 
-    if (!graphResponse.ok) {
-      return sendJson(response, 502, { error: "Facebook posts are temporarily unavailable." });
-    }
+  let payload;
+  try {
+    payload = await graphResponse.json();
+  } catch (error) {
+    const code = error?.cause?.code || error?.code;
+    logFacebookFailure(error instanceof SyntaxError ? "invalid_response" : "response_read_error", {
+      status: graphResponse.status,
+      code: NETWORK_ERROR_CODES.has(code) ? code : "UNKNOWN",
+    });
+    return sendJson(response, 502, { error: "Facebook posts are temporarily unavailable." });
+  }
 
-    const payload = await graphResponse.json();
+  if (!graphResponse.ok || payload?.error) {
+    logFacebookFailure("graph_error", {
+      status: graphResponse.status,
+      code: Number.isSafeInteger(payload?.error?.code) ? payload.error.code : null,
+      subcode: Number.isSafeInteger(payload?.error?.error_subcode) ? payload.error.error_subcode : null,
+      message: safeFacebookMessage(payload?.error?.message),
+    });
+    return sendJson(response, 502, { error: "Facebook posts are temporarily unavailable." });
+  }
+
+  try {
     const posts = Array.isArray(payload?.data) ? payload.data : [];
     const normalizedPosts = normalizePosts(posts);
 
@@ -123,6 +181,7 @@ module.exports = async function facebookPosts(request, response) {
       "public, s-maxage=900, stale-while-revalidate=3600",
     );
   } catch {
+    logFacebookFailure("processing_error", {});
     return sendJson(response, 502, { error: "Facebook posts are temporarily unavailable." });
   }
 };
